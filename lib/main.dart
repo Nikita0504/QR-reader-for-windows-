@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       initialRoute: '/signIn',
       getPages: Routes.routes,
+      theme: ThemeData(
+        fontFamily: 'KdamThmorPro',
+      ),
     );
   }
 }

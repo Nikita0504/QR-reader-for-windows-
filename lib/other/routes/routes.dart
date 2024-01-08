@@ -1,4 +1,4 @@
-import 'package:coffee_goose/view/screens/WelcomeScreen.dart';
+import 'package:coffee_goose/view/screens/mainScreen.dart';
 import 'package:get/get.dart';
 
 class Routes {
