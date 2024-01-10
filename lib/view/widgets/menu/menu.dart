@@ -14,19 +14,19 @@ class Menu extends StatelessWidget {
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         IconButtonCustom(
-            icon: Icon(
+            icon: const Icon(
               Icons.pending,
               size: 50,
             ),
             onPressed: () {}),
         IconButtonCustom(
-            icon: Icon(
+            icon: const Icon(
               Icons.pending,
               size: 50,
             ),
             onPressed: () {}),
         IconButtonCustom(
-            icon: Icon(
+            icon: const Icon(
               Icons.pending,
               size: 50,
             ),

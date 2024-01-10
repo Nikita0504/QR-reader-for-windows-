@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:coffee_goose/other/routes/routes.dart';
+import 'package:coffee_goose/other/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
@@ -21,13 +21,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      initialRoute: '/signIn',
-      getPages: Routes.routes,
-      theme: ThemeData(
-        fontFamily: 'KdamThmorPro',
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/signIn',
+        getPages: Routes.routes,
+        theme: CustomTheme.darkTheme);
   }
 }
