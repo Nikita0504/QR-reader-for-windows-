@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:coffee_goose/other/controllers/globalController.dart';
 import 'package:coffee_goose/other/routes/routes.dart';
 import 'package:coffee_goose/other/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(GlobalController());
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: '/signIn',
+        initialRoute: '/mainScreen',
         getPages: Routes.routes,
-        theme: CustomTheme.darkTheme);
+        theme: CustomTheme.theme);
   }
 }

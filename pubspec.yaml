@@ -58,6 +58,9 @@ flutter:
 
  assets:
    - assets/fonts/
+   - assets/images/icons/image 1.png
+   - assets/images/icons/image 2.png
+   - assets/images/icons/image 3.png
 
  fonts:
    - family: Imprima

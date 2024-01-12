@@ -12,24 +12,15 @@ class Menu extends StatelessWidget {
       width: size.width * 0.15,
       color: const Color.fromARGB(255, 63, 63, 63),
       child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         IconButtonCustom(
-            icon: const Icon(
-              Icons.pending,
-              size: 50,
-            ),
+            icon: Image.asset('assets/images/icons/image 1.png'),
             onPressed: () {}),
         IconButtonCustom(
-            icon: const Icon(
-              Icons.pending,
-              size: 50,
-            ),
+            icon: Image.asset('assets/images/icons/image 2.png'),
             onPressed: () {}),
         IconButtonCustom(
-            icon: const Icon(
-              Icons.pending,
-              size: 50,
-            ),
+            icon: Image.asset('assets/images/icons/image 3.png'),
             onPressed: () {}),
       ]),
     );

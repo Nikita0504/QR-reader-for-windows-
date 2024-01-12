@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 class Routes {
   static final routes = [
     GetPage(
-      name: '/signIn',
-      page: () => SignIn(),
-    )
+      name: '/mainScreen',
+      page: () => MainScreen(),
+    ),
   ];
 }

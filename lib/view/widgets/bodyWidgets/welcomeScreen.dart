@@ -8,13 +8,15 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Padding(
+      key: ValueKey<int>(0),
       padding: EdgeInsets.fromLTRB(size.width * 0.25, 0, 0, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             'Welcome, Dear User',
-            style: TextStyle(color: Colors.white, fontSize: 50),
+            style:
+                Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 50),
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -23,7 +25,10 @@ class WelcomeScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   'Create',
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(fontSize: 30),
                 ),
               ))
         ],

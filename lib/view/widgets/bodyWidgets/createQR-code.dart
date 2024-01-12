@@ -8,6 +8,7 @@ class CreateQR extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Padding(
+        key: ValueKey<int>(1),
         padding: EdgeInsets.fromLTRB(150, 0, 0, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
