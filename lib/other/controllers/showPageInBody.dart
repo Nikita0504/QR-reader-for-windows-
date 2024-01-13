@@ -9,7 +9,7 @@ class ShowPageInBody extends GetxController {
       const Center(key: ValueKey<int>(3), child: CircularProgressIndicator())
           .obs;
 
-  bool showWelcomeScreen = true;
+  bool showWelcomeScreen = false;
 
   void changePages(var page) {
     bodyWidgets = page;
