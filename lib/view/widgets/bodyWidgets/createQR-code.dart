@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:coffee_goose/other/controllers/globalController.dart';
+import 'package:coffee_goose/view/widgets/imageWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class CreateQR extends GetView<GlobalController> {
   final GestureTapCallback onPressed;
@@ -23,6 +25,7 @@ class CreateQR extends GetView<GlobalController> {
             ),
             Row(
               children: [
+                ImageWidget(),
                 Container(
                   width: size.width * 0.6,
                   height: size.height * 0.125,
@@ -52,6 +55,7 @@ class CreateQR extends GetView<GlobalController> {
                     builder: (controllerPage) {
                       return IconButton(
                           onPressed: () {
+                            controller.getImage.pickImageFromGallery();
                             controller.colorSelection = true;
                             controller.ColorMode();
                           },
