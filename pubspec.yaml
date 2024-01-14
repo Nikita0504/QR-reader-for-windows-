@@ -35,6 +35,11 @@ dependencies:
   get:
   window_manager: 
   image_picker:
+  flutter_archive:
+  image:
+  flutter_image_compress: ^2.1.0
+  flutter_native_image: ^0.0.6+1
+
 
 dev_dependencies:
   flutter_test:

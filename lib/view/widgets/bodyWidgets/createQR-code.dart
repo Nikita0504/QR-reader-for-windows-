@@ -14,7 +14,7 @@ class CreateQR extends GetView<GlobalController> {
     var size = MediaQuery.of(context).size;
     return Padding(
         key: ValueKey<int>(1),
-        padding: EdgeInsets.fromLTRB(110, 0, 0, 0),
+        padding: const EdgeInsets.fromLTRB(65, 0, 0, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -26,6 +26,9 @@ class CreateQR extends GetView<GlobalController> {
             Row(
               children: [
                 ImageWidget(),
+                SizedBox(
+                  width: size.width * 0.01,
+                ),
                 Container(
                   width: size.width * 0.6,
                   height: size.height * 0.125,

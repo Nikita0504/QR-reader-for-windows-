@@ -14,14 +14,14 @@ class ImageWidget extends StatelessWidget {
       init: ImageController(),
       builder: (controller) {
         return Obx(() => Container(
-              width: size.width * 0.07,
+              width: size.width * 0.065,
               height: size.height * 0.125,
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 63, 63, 63),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              child: controller.image.value.path.isNotEmpty
-                  ? Image.file(File(controller.image.value.path))
+              child: controller.imageFile.value.path.isNotEmpty
+                  ? Image.memory(controller.UintimageBytes!)
                   : Container(
                       width: size.width * 0.05,
                       height: size.height * 0.1,
