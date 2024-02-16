@@ -8,7 +8,6 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Padding(
-      key: ValueKey<int>(0),
       padding: EdgeInsets.fromLTRB(size.width * 0.25, 0, 0, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

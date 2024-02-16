@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:coffee_goose/other/controllers/globalController.dart';
+import 'package:coffee_goose/other/controllers/global_controller.dart';
 import 'package:coffee_goose/other/routes/routes.dart';
 import 'package:coffee_goose/other/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
     WindowManager.instance.setMinimumSize(const Size(1322, 664));
-    WindowManager.instance.setMaximumSize(const Size(1322, 664));
+    //WindowManager.instance.setMaximumSize(const Size(1322, 664));
   }
   await windowManager.ensureInitialized();
   runApp(const MyApp());

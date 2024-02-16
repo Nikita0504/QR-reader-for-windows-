@@ -1,15 +1,14 @@
-import 'package:coffee_goose/view/widgets/bodyWidgets/createQR-code.dart';
-import 'package:coffee_goose/view/widgets/bodyWidgets/welcomeScreen.dart';
+import 'package:coffee_goose/view/widgets/body_widgets/create_QR-code.dart';
+import 'package:coffee_goose/view/widgets/body_widgets/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class ShowPageInBody extends GetxController {
   Rx<Widget> bodyWidgets =
       const Center(key: ValueKey<int>(3), child: CircularProgressIndicator())
           .obs;
 
-  bool showWelcomeScreen = false;
+  bool showWelcomeScreen = true;
 
   void changePages(var page) {
     bodyWidgets = page;
@@ -21,15 +20,11 @@ class ShowPageInBody extends GetxController {
     if (showWelcomeScreen == true) {
       bodyWidgets = WelcomeScreen(
         onPressed: () {
-          changePages(CreateQR(
-            onPressed: () {},
-          ).obs);
+          changePages(CreateQR().obs);
         },
       ).obs;
     } else {
-      bodyWidgets = CreateQR(
-        onPressed: () {},
-      ).obs;
+      bodyWidgets = CreateQR().obs;
     }
     super.onInit();
   }

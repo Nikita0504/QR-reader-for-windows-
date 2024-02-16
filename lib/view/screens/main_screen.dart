@@ -1,5 +1,5 @@
-import 'package:coffee_goose/other/controllers/globalController.dart';
-import 'package:coffee_goose/other/controllers/showPageInBody.dart';
+import 'package:coffee_goose/other/controllers/global_controller.dart';
+import 'package:coffee_goose/other/controllers/show_page_in_body.dart';
 import 'package:coffee_goose/view/widgets/menu/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
