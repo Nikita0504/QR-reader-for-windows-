@@ -39,6 +39,7 @@ dependencies:
   image:
   qr_flutter: 
   dio: 
+  flutter_colorpicker:
 
 dev_dependencies:
   flutter_test:

@@ -42,4 +42,10 @@ class ImageController extends GetxController {
     }
     update();
   }
+
+  void removePickImageFromGallery() {
+    imageFile = Rx<File>(File(''));
+    colorMode = Colors.grey.obs;
+    update();
+  }
 }

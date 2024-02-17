@@ -1,10 +1,5 @@
-import 'dart:io';
-
-import 'package:coffee_goose/models/qr_generate_static.dart';
 import 'package:coffee_goose/other/controllers/global_controller.dart';
-import 'package:coffee_goose/other/controllers/image_controller.dart';
-import 'package:coffee_goose/other/controllers/receiving_or_sending_data.dart';
-import 'package:coffee_goose/view/widgets/image_widget.dart';
+import 'package:coffee_goose/view/widgets/widgets_qr_bar/qr_bar.dart';
 import 'package:coffee_goose/view/widgets/received_qr.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +11,7 @@ class CreateQR extends GetView<GlobalController> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Padding(
-        padding: EdgeInsets.fromLTRB(size.width * 0.045, 0, 0, 0),
+        padding: EdgeInsets.fromLTRB(size.width * 0.1225, 0, 0, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -25,54 +20,23 @@ class CreateQR extends GetView<GlobalController> {
               style:
                   Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 50),
             ),
-            Row(
-              children: [
-                ImageWidget(),
-                SizedBox(
-                  width: size.width * 0.01,
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              width: size.width * 0.6,
+              height: size.height * 0.125,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 63, 63, 63),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(30),
+                child: TextField(
+                  controller: controller.getImage.textController.value,
+                  style: const TextStyle(color: Colors.white),
                 ),
-                Container(
-                  width: size.width * 0.6,
-                  height: size.height * 0.125,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 63, 63, 63),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(30),
-                    child: TextField(
-                      controller: controller.getImage.textController.value,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: size.width * 0.01,
-                ),
-                Container(
-                  width: size.width * 0.07,
-                  height: size.height * 0.125,
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 63, 63, 63),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: GetBuilder<ImageController>(
-                    init: ImageController(),
-                    builder: (controllerPage) {
-                      return IconButton(
-                          onPressed: () {
-                            controller.getImage
-                                .pickImageFromGallery(false, 'create');
-                          },
-                          icon: Icon(
-                            Icons.image,
-                            color: controllerPage.colorMode.value,
-                          ));
-                    },
-                  ),
-                ),
-              ],
+              ),
             ),
+            qrBar(),
             SizedBox(
               height: size.height * 0.025,
             ),
@@ -107,7 +71,7 @@ class CreateQR extends GetView<GlobalController> {
                         .bodyText1!
                         .copyWith(fontSize: 30),
                   ),
-                ))
+                )),
           ],
         ));
   }

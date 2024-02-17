@@ -1,10 +1,12 @@
 import 'dart:io';
+import 'package:coffee_goose/other/controllers/global_controller.dart';
 import 'package:coffee_goose/other/controllers/image_controller.dart';
+import 'package:coffee_goose/view/widgets/widgets_qr_bar/pick_image_button.dart';
+import 'package:coffee_goose/view/widgets/widgets_qr_bar/remove_image_button.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get.dart';
 
-class ImageWidget extends StatelessWidget {
+class ImageWidget extends GetView<GlobalController> {
   const ImageWidget({super.key});
 
   @override
@@ -17,11 +19,11 @@ class ImageWidget extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.all(15),
-                  width: size.width * 0.065,
+                  width: size.width * 0.055,
                   height: size.height * 0.125,
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 63, 63, 63),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: controller.imageFile.value.path.isNotEmpty
                       ? Image.file(File(controller.imageFile.value.path))
@@ -35,21 +37,21 @@ class ImageWidget extends StatelessWidget {
                         ),
                 ),
                 Positioned(
-                    top: size.height * 0.11,
+                    top: size.height * 0.0125,
                     right: size.width * 0.005,
                     child: InkWell(
-                      onTap: () {
-                        print('object');
-                      },
-                      child: Container(
-                        width: size.width * 0.02,
-                        height: size.height * 0.04,
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 27, 133, 194),
-                          borderRadius: BorderRadius.all(Radius.circular(360)),
-                        ),
-                      ),
-                    ))
+                        onTap: () {
+                          controller.pickImageFromGallery(false, 'create');
+                        },
+                        child: const PickImageButton())),
+                Positioned(
+                    top: size.height * 0.12,
+                    right: size.width * 0.005,
+                    child: InkWell(
+                        onTap: () {
+                          controller.removePickImageFromGallery();
+                        },
+                        child: const RemovePickImageButton()))
               ],
             ));
       },

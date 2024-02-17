@@ -1,5 +1,5 @@
 import 'package:coffee_goose/other/controllers/global_controller.dart';
-import 'package:coffee_goose/view/widgets/image_qr_widget.dart';
+import 'package:coffee_goose/view/widgets/widgets_qr_bar/image_qr_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
