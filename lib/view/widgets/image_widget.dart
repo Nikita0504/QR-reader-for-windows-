@@ -35,15 +35,15 @@ class ImageWidget extends StatelessWidget {
                         ),
                 ),
                 Positioned(
-                    top: 85,
-                    right: 10,
+                    top: size.height * 0.11,
+                    right: size.width * 0.005,
                     child: InkWell(
                       onTap: () {
                         print('object');
                       },
                       child: Container(
-                        width: 20,
-                        height: 20,
+                        width: size.width * 0.02,
+                        height: size.height * 0.04,
                         decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 27, 133, 194),
                           borderRadius: BorderRadius.all(Radius.circular(360)),

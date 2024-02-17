@@ -1,21 +1,26 @@
-import 'dart:convert';
+import 'package:coffee_goose/models/qr_generate_static.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ReceivingOrSendingData extends GetxController {
   var jsonList;
-  Rx<Image>? imageAPI;
-
-  void getData() async {
+  Future<void> getData(
+    String content,
+  ) async {
     try {
       var response = await Dio().post(
-          'https://skyprayer-animated-qr-maker.hf.space/qr_generate/static');
+          'https://skyprayer-animated-qr-maker.hf.space/qr_generate/static',
+          data: {
+            "content": content,
+            "border_size": 1,
+            "scale": 15,
+            "qr_code_color": {"red": 194, "green": 37, "blue": 37},
+            "data_color": {"red": 250, "green": 37, "blue": 37},
+            "border_color": {"red": 255, "green": 255, "blue": 255}
+          });
       if (response.statusCode == 200) {
         jsonList = response.data['data'];
-        imageAPI?.value = Image.memory(base64Decode(jsonList['image_bytes']));
-        print(jsonList['image_bytes'].toString());
-        update();
+        QR_Static qrModel = QR_Static.fromJson(jsonList);
       } else {
         print(response.statusCode);
       }

@@ -9,7 +9,7 @@ class GlobalController extends GetxController {
   final ReceivingOrSendingData api = Get.put(ReceivingOrSendingData());
   @override
   void onInit() {
-    api.getData();
+    // api.getData();
     // TODO: implement onInit
     super.onInit();
   }

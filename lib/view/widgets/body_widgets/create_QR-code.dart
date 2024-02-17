@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:coffee_goose/models/qr_generate_static.dart';
 import 'package:coffee_goose/other/controllers/global_controller.dart';
 import 'package:coffee_goose/other/controllers/image_controller.dart';
+import 'package:coffee_goose/other/controllers/receiving_or_sending_data.dart';
 import 'package:coffee_goose/view/widgets/image_widget.dart';
+import 'package:coffee_goose/view/widgets/received_qr.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class CreateQR extends GetView<GlobalController> {
   const CreateQR({super.key});
@@ -77,53 +79,24 @@ class CreateQR extends GetView<GlobalController> {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(255, 91, 91, 91)),
-                onPressed: () {
+                onPressed: () async {
+                  await controller.api
+                      .getData(controller.getImage.textController.value.text);
+                  // ignore: use_build_context_synchronously
                   showDialog(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                             backgroundColor:
                                 Theme.of(context).scaffoldBackgroundColor,
                             content: Container(
-                              width: size.width * 0.05,
-                              height: size.height * 0.375,
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 63, 63, 63),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                              ),
-                              child: GetBuilder<ImageController>(
-                                init: ImageController(),
-                                builder: (imageController) {
-                                  return Obx(() => Container(
-                                      width: size.width * 0.2,
-                                      height: size.height * 0.1,
-                                      child: imageController
-                                              .imageFile.value.path.isNotEmpty
-                                          ? QrImageView(
-                                              data: controller.getImage
-                                                  .textController.value.text,
-                                              version: QrVersions.auto,
-                                              size: 320,
-                                              gapless: false,
-                                              embeddedImageStyle:
-                                                  const QrEmbeddedImageStyle(
-                                                size: Size(50, 50),
-                                              ),
-                                              embeddedImage: Image.file(
-                                                File(imageController
-                                                    .imageFile.value.path),
-                                              ).image,
-                                            )
-                                          : QrImageView(
-                                              data: controller.getImage
-                                                  .textController.value.text,
-                                              version: QrVersions.auto,
-                                              size: 320,
-                                              gapless: false,
-                                            )));
-                                },
-                              ),
-                            ),
+                                width: size.width * 0.05,
+                                height: size.height * 0.375,
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 63, 63, 63),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                child: const ReceivedQR()),
                           ));
                 },
                 child: Center(

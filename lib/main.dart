@@ -10,7 +10,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
     WindowManager.instance.setMinimumSize(const Size(1322, 664));
-    //WindowManager.instance.setMaximumSize(const Size(1322, 664));
   }
   await windowManager.ensureInitialized();
   runApp(const MyApp());

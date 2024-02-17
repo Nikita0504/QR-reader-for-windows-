@@ -1,4 +1,4 @@
-import 'package:coffee_goose/view/widgets/body_widgets/create_QR-code.dart';
+import 'package:coffee_goose/view/widgets/body_widgets/create_qr-code.dart';
 import 'package:coffee_goose/view/widgets/body_widgets/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

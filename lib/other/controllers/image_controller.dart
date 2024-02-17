@@ -28,7 +28,6 @@ class ImageController extends GetxController {
       img.Image? image = img.decodeImage(UintimageBytes);
       List<int> compressedBytes = img.encodeJpg(image!, quality: 10);
       base64Image = base64Encode(compressedBytes);
-      //colorMode = Colors.green.obs;
     } else if (returnImage == null) {
       colorMode = Colors.red.obs;
     }
