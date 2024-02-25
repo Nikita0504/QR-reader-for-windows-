@@ -6,7 +6,7 @@ import 'package:coffee_goose/view/widgets/widgets_qr_bar/remove_image_button.dar
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ImageWidget extends GetView<GlobalController> {
+class ImageWidget extends StatelessWidget {
   const ImageWidget({super.key});
 
   @override
@@ -14,7 +14,7 @@ class ImageWidget extends GetView<GlobalController> {
     var size = MediaQuery.of(context).size;
     return GetBuilder<ImageController>(
       init: ImageController(),
-      builder: (controller) {
+      builder: (controllerImage) {
         return Obx(() => Stack(
               children: [
                 Container(
@@ -25,8 +25,13 @@ class ImageWidget extends GetView<GlobalController> {
                     color: Color.fromARGB(255, 63, 63, 63),
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
-                  child: controller.imageFile.value.path.isNotEmpty
-                      ? Image.file(File(controller.imageFile.value.path))
+                  child: controllerImage.imageFile.value.path.isNotEmpty
+                      ? GetBuilder<GlobalController>(
+                          init: GlobalController(),
+                          builder: (controller) => Obx(() =>
+                              controller.api.link.value != ''
+                                  ? Image.network(controller.api.link.value)
+                                  : CircularProgressIndicator()))
                       : Container(
                           width: size.width * 0.05,
                           height: size.height * 0.1,
@@ -41,7 +46,7 @@ class ImageWidget extends GetView<GlobalController> {
                     right: size.width * 0.005,
                     child: InkWell(
                         onTap: () {
-                          controller.pickImageFromGallery(false, 'create');
+                          controllerImage.pickImageFromGallery(false, 'create');
                         },
                         child: const PickImageButton())),
                 Positioned(
@@ -49,7 +54,7 @@ class ImageWidget extends GetView<GlobalController> {
                     right: size.width * 0.005,
                     child: InkWell(
                         onTap: () {
-                          controller.removePickImageFromGallery();
+                          controllerImage.removePickImageFromGallery();
                         },
                         child: const RemovePickImageButton()))
               ],

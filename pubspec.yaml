@@ -37,9 +37,12 @@ dependencies:
   image_picker:
   flutter_archive:
   image:
-  qr_flutter: 
   dio: 
   flutter_colorpicker:
+  cloud_firestore: 
+  firebase_storage: 
+  firebase_core:
+  flutter_download_manager_dio4:
 
 dev_dependencies:
   flutter_test:

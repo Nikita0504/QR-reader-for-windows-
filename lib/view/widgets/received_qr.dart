@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:coffee_goose/models/qr_generate_static.dart';
+import 'package:coffee_goose/other/models/qr_generate_animated.dart';
 import 'package:coffee_goose/other/controllers/receiving_or_sending_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,22 +10,13 @@ class ReceivedQR extends GetView<ReceivingOrSendingData> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    QR_Static qrModel = QR_Static.fromJson(controller.jsonList);
-    return GetBuilder<ReceivingOrSendingData>(
-      init: ReceivingOrSendingData(),
-      builder: (controller) {
-        return Container(
-          width: size.width * 0.2,
-          height: size.height * 0.1,
-          child: qrModel.base64Image != null
-              ? Image.memory(base64Decode(qrModel.base64Image.toString()))
-              : Center(
-                  child: Text(
-                  'failed to receive qr code',
-                  style: Theme.of(context).textTheme.bodyText1,
-                )),
-        );
-      },
+    QR_Animated qrModel = QR_Animated.fromJson(controller.jsonList);
+    return Container(
+      width: size.width * 0.2,
+      height: size.height * 0.1,
+      child: qrModel.base64Image != null
+          ? Image.memory(base64Decode(qrModel.base64Image.toString()))
+          : Center(child: CircularProgressIndicator()),
     );
   }
 }

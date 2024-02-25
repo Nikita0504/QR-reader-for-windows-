@@ -1,4 +1,5 @@
-import 'package:coffee_goose/models/qr_generate_static.dart';
+import 'package:coffee_goose/other/models/qr_generate_animated.dart';
+import 'package:coffee_goose/other/models/qr_generate_static.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,9 @@ class ReceivingOrSendingData extends GetxController {
   Rx<double> scale = 10.0.obs;
   Rx<double> borderSize = 1.0.obs;
 
-  Future<void> getData(
+  RxString link = ''.obs;
+
+  Future<void> getStaticData(
     String content,
   ) async {
     try {
@@ -44,6 +47,28 @@ class ReceivingOrSendingData extends GetxController {
       if (response.statusCode == 200) {
         jsonList = response.data['data'];
         QR_Static qrModel = QR_Static.fromJson(jsonList);
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> getAnimatedData(
+    String content,
+  ) async {
+    try {
+      var response = await Dio().post(
+          'https://skyprayer-animated-qr-maker.hf.space/qr_generate/animated',
+          data: {
+            "content": content,
+            "scale": scale.call(),
+            "gif_link": link.value
+          });
+      if (response.statusCode == 200) {
+        jsonList = response.data['data'];
+        QR_Animated qrModel = QR_Animated.fromJson(jsonList);
       } else {
         print(response.statusCode);
       }

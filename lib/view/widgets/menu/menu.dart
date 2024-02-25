@@ -29,7 +29,7 @@ class Menu extends StatelessWidget {
             }),
         IconButtonCustom(
             icon: Image.asset('assets/images/icons/image 3.png'),
-            onPressed: () {}),
+            onPressed: () async {})
       ]),
     );
   }

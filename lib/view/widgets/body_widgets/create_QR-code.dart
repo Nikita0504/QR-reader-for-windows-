@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:coffee_goose/other/controllers/global_controller.dart';
 import 'package:coffee_goose/view/widgets/widgets_qr_bar/qr_bar.dart';
 import 'package:coffee_goose/view/widgets/received_qr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_download_manager_dio4/flutter_download_manager.dart';
 import 'package:get/get.dart';
 
 class CreateQR extends GetView<GlobalController> {
@@ -44,8 +47,13 @@ class CreateQR extends GetView<GlobalController> {
                 style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(255, 91, 91, 91)),
                 onPressed: () async {
-                  await controller.api
-                      .getData(controller.getImage.textController.value.text);
+                  if (controller.api.link != '') {
+                    await controller.api.getAnimatedData(
+                        controller.getImage.textController.value.text);
+                  } else {
+                    await controller.api.getStaticData(
+                        controller.getImage.textController.value.text);
+                  }
                   // ignore: use_build_context_synchronously
                   showDialog(
                       context: context,
@@ -61,6 +69,30 @@ class CreateQR extends GetView<GlobalController> {
                                       BorderRadius.all(Radius.circular(10)),
                                 ),
                                 child: const ReceivedQR()),
+                            actions: [
+                              ElevatedButton(
+                                child: const Text('Upload a QR code'),
+                                onPressed: () async {
+                                  var dl = DownloadManager();
+                                  dl.addDownload(
+                                      controller.api.link.value, "./test.sdas");
+                                  DownloadTask? task =
+                                      dl.getDownload(controller.api.link.value);
+
+                                  task?.status.addListener(() {
+                                    print(task.status.value);
+                                  });
+
+                                  task?.progress.addListener(() {
+                                    print(task.progress.value);
+                                  });
+
+                                  await dl.whenDownloadComplete(
+                                      controller.api.link.value);
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
                           ));
                 },
                 child: Center(
