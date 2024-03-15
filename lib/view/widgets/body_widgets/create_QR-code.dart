@@ -1,11 +1,9 @@
-import 'dart:io';
-
 import 'package:coffee_goose/other/controllers/global_controller.dart';
 import 'package:coffee_goose/view/widgets/widgets_qr_bar/qr_bar.dart';
 import 'package:coffee_goose/view/widgets/received_qr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_download_manager_dio4/flutter_download_manager.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CreateQR extends GetView<GlobalController> {
   const CreateQR({super.key});
@@ -73,22 +71,12 @@ class CreateQR extends GetView<GlobalController> {
                               ElevatedButton(
                                 child: const Text('Upload a QR code'),
                                 onPressed: () async {
-                                  var dl = DownloadManager();
-                                  dl.addDownload(
-                                      controller.api.link.value, "./test.sdas");
-                                  DownloadTask? task =
-                                      dl.getDownload(controller.api.link.value);
-
-                                  task?.status.addListener(() {
-                                    print(task.status.value);
-                                  });
-
-                                  task?.progress.addListener(() {
-                                    print(task.progress.value);
-                                  });
-
-                                  await dl.whenDownloadComplete(
-                                      controller.api.link.value);
+                                  if (await canLaunch(
+                                      controller.api.qrLink.value)) {
+                                    await launch(controller.api.qrLink.value);
+                                  } else {
+                                    throw 'Could not launch ${controller.api.qrLink.value}';
+                                  }
                                   Navigator.of(context).pop();
                                 },
                               ),

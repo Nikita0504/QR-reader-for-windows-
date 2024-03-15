@@ -12,7 +12,7 @@ void main() async {
   if (Platform.isWindows) {
     WindowManager.instance.setMinimumSize(const Size(1322, 664));
   }
-
+  Get.put(GlobalController());
   await windowManager.ensureInitialized();
 
   await Firebase.initializeApp(
@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(GlobalController());
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/mainScreen',

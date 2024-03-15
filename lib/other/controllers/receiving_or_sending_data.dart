@@ -1,8 +1,10 @@
 import 'package:coffee_goose/other/models/qr_generate_animated.dart';
 import 'package:coffee_goose/other/models/qr_generate_static.dart';
+import 'package:coffee_goose/other/models/upload_file.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:coffee_goose/other/models/history.dart';
 
 class ReceivingOrSendingData extends GetxController {
   var jsonList;
@@ -15,7 +17,7 @@ class ReceivingOrSendingData extends GetxController {
 
   Rx<double> scale = 10.0.obs;
   Rx<double> borderSize = 1.0.obs;
-
+  RxString qrLink = ''.obs;
   RxString link = ''.obs;
 
   Future<void> getStaticData(
@@ -45,8 +47,21 @@ class ReceivingOrSendingData extends GetxController {
             }
           });
       if (response.statusCode == 200) {
+        String hexColor(Color color) {
+          var hexCode = '#${color.value.toRadixString(16).substring(2, 8)}';
+          return hexCode;
+        }
+
         jsonList = response.data['data'];
         QR_Static qrModel = QR_Static.fromJson(jsonList);
+        uploadQRFile(qrModel.base64Image);
+        await saveHistory(
+          qrModel.base64Image,
+          content,
+          hexColor(colors[0]),
+          hexColor(colors[1]),
+          hexColor(colors[2]),
+        );
       } else {
         print(response.statusCode);
       }
@@ -69,6 +84,13 @@ class ReceivingOrSendingData extends GetxController {
       if (response.statusCode == 200) {
         jsonList = response.data['data'];
         QR_Animated qrModel = QR_Animated.fromJson(jsonList);
+        uploadQRFile(qrModel.base64Image);
+        await saveHistory(
+            qrModel.base64Image,
+            content,
+            colors[0].value.toString(),
+            colors[1].value.toString(),
+            colors[2].value.toString());
       } else {
         print(response.statusCode);
       }

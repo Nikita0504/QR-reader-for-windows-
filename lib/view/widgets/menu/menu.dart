@@ -1,6 +1,7 @@
 import 'package:coffee_goose/other/controllers/show_page_in_body.dart';
 import 'package:coffee_goose/view/widgets/body_widgets/create_qr-code.dart';
 import 'package:coffee_goose/view/widgets/body_widgets/decrypt_qr.dart';
+import 'package:coffee_goose/view/widgets/body_widgets/history.dart';
 import 'package:coffee_goose/view/widgets/menu/icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,9 @@ class Menu extends StatelessWidget {
             }),
         IconButtonCustom(
             icon: Image.asset('assets/images/icons/image 3.png'),
-            onPressed: () async {})
+            onPressed: () {
+              showPageInBody.changePages(const History().obs);
+            })
       ]),
     );
   }
