@@ -8,11 +8,16 @@ class History extends GetView<GlobalController> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: List.generate(
-            controller.items.length, (index) => ItemWidget(index: index)),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            children: List.generate(
+                controller.items.length, (index) => ItemWidget(index: index)),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -6,21 +6,29 @@ class Item {
   final String color1;
   final String color2;
   final String color3;
+  final String scale;
+  final String borderSize;
 
-  Item(
-      {required this.base64,
-      required this.meaning,
-      required this.color1,
-      required this.color2,
-      required this.color3});
+  Item({
+    required this.base64,
+    required this.meaning,
+    required this.color1,
+    required this.color2,
+    required this.color3,
+    required this.scale,
+    required this.borderSize,
+  });
 
   factory Item.fromJson(Map<String, dynamic> jsonData) {
     return Item(
-        base64: jsonData['base64'],
-        meaning: jsonData['meaning'],
-        color1: jsonData['color1'],
-        color2: jsonData['color2'],
-        color3: jsonData['color3']);
+      base64: jsonData['base64'],
+      meaning: jsonData['meaning'],
+      color1: jsonData['color1'],
+      color2: jsonData['color2'],
+      color3: jsonData['color3'],
+      scale: jsonData['scale'],
+      borderSize: jsonData['borderSize'],
+    );
   }
   Map<String, dynamic> toJson() {
     return {
@@ -29,6 +37,8 @@ class Item {
       'color1': color1,
       'color2': color2,
       'color3': color3,
+      'scale': scale,
+      'borderSize': borderSize,
     };
   }
 }

@@ -61,6 +61,8 @@ class ReceivingOrSendingData extends GetxController {
           hexColor(colors[0]),
           hexColor(colors[1]),
           hexColor(colors[2]),
+          scale.value.ceil().toString(),
+          borderSize.value.ceil().toString(),
         );
       } else {
         print(response.statusCode);
@@ -76,21 +78,20 @@ class ReceivingOrSendingData extends GetxController {
     try {
       var response = await Dio().post(
           'https://skyprayer-animated-qr-maker.hf.space/qr_generate/animated',
-          data: {
-            "content": content,
-            "scale": scale.call(),
-            "gif_link": link.value
-          });
+          data: {"content": content, "scale": 10, "gif_link": link.value});
       if (response.statusCode == 200) {
         jsonList = response.data['data'];
         QR_Animated qrModel = QR_Animated.fromJson(jsonList);
         uploadQRFile(qrModel.base64Image);
         await saveHistory(
-            qrModel.base64Image,
-            content,
-            colors[0].value.toString(),
-            colors[1].value.toString(),
-            colors[2].value.toString());
+          qrModel.base64Image,
+          content,
+          colors[0].value.toString(),
+          colors[1].value.toString(),
+          colors[2].value.toString(),
+          10.toString(),
+          1.toString(),
+        );
       } else {
         print(response.statusCode);
       }

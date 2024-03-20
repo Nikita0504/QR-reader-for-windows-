@@ -22,7 +22,7 @@ class ItemWidget extends GetView<GlobalController> {
     }
 
     return Container(
-        margin: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
         width: size.width * 0.84,
         height: size.height * 0.2,
         decoration: const BoxDecoration(
@@ -30,52 +30,107 @@ class ItemWidget extends GetView<GlobalController> {
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               width: size.width * 0.08,
-              margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+              margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
               child: Image.memory(
                 base64Decode(item.base64),
               ),
             ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(15, 22, 15, 0),
+              child: Column(
+                children: [
+                  const Text(
+                    'Meaning:',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    item.meaning,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+            ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Meaning:'),
-                Text(item.meaning),
+                const Text(
+                  'Colors:',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: size.width * 0.04,
+                      height: size.height * 0.06,
+                      decoration: BoxDecoration(
+                        color: Color(_getColorFromHex(item.color1)),
+                        shape: BoxShape.circle,
+                        boxShadow: const [
+                          BoxShadow(color: Colors.black, spreadRadius: 2),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: size.width * 0.04,
+                      height: size.height * 0.06,
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Color(_getColorFromHex(item.color2)),
+                        shape: BoxShape.circle,
+                        boxShadow: const [
+                          BoxShadow(color: Colors.black, spreadRadius: 2),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: size.width * 0.04,
+                      height: size.height * 0.06,
+                      decoration: BoxDecoration(
+                        color: Color(_getColorFromHex(item.color3)),
+                        shape: BoxShape.circle,
+                        boxShadow: const [
+                          BoxShadow(color: Colors.black, spreadRadius: 2),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
             Container(
-              width: size.width * 0.02,
-              height: size.height * 0.04,
-              decoration: BoxDecoration(
-                color: Color(_getColorFromHex(item.color1)),
-                shape: BoxShape.circle,
-                boxShadow: const [
-                  BoxShadow(color: Colors.black, spreadRadius: 2),
+              margin: const EdgeInsets.fromLTRB(15, 22, 15, 0),
+              child: Column(
+                children: [
+                  const Text(
+                    'Scale:',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    item.scale,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
                 ],
               ),
             ),
             Container(
-              width: size.width * 0.02,
-              height: size.height * 0.04,
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Color(_getColorFromHex(item.color2)),
-                shape: BoxShape.circle,
-                boxShadow: const [
-                  BoxShadow(color: Colors.black, spreadRadius: 2),
-                ],
-              ),
-            ),
-            Container(
-              width: size.width * 0.02,
-              height: size.height * 0.04,
-              decoration: BoxDecoration(
-                color: Color(_getColorFromHex(item.color3)),
-                shape: BoxShape.circle,
-                boxShadow: const [
-                  BoxShadow(color: Colors.black, spreadRadius: 2),
+              margin: const EdgeInsets.fromLTRB(15, 22, 15, 0),
+              child: Column(
+                children: [
+                  const Text(
+                    'Border size:',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    item.borderSize,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w600),
+                  ),
                 ],
               ),
             ),

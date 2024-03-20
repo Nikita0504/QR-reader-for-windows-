@@ -30,20 +30,25 @@ class SliderWidget extends GetView<ReceivingOrSendingData> {
               ),
             ),
           ),
-          Obx(
-            () => Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 36, 0),
-              child: Row(
-                children: [
-                  Slider(
-                    activeColor: Colors.amber[600],
-                    min: 1,
-                    max: 10,
-                    value: controller.scale.value,
-                    onChanged: (val) => controller.scale.value = val,
-                  ),
-                  Text('Scale: ${controller.scale.value.ceil()}')
-                ],
+          GetBuilder<ImageController>(
+            init: ImageController(),
+            builder: (imageController) => Obx(
+              () => Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 36, 0),
+                child: Row(
+                  children: [
+                    Slider(
+                      activeColor: imageController.sliderMode.value == true
+                          ? Colors.amber[600]
+                          : Colors.grey,
+                      min: 1,
+                      max: 10,
+                      value: controller.scale.value,
+                      onChanged: (val) => controller.scale.value = val,
+                    ),
+                    Text('Scale: ${controller.scale.value.ceil()}')
+                  ],
+                ),
               ),
             ),
           ),

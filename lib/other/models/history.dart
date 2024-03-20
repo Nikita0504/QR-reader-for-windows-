@@ -7,13 +7,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final GlobalController globalController = Get.put(GlobalController());
 Future saveHistory(String base64, String meaning, String color1, String color2,
-    String color3) async {
+    String color3, String scale, String borderSize) async {
   globalController.items.add(Item(
-      base64: base64,
-      meaning: meaning,
-      color1: color1,
-      color2: color2,
-      color3: color3));
+    base64: base64,
+    meaning: meaning,
+    color1: color1,
+    color2: color2,
+    color3: color3,
+    scale: scale,
+    borderSize: borderSize,
+  ));
 
   List<Map<String, dynamic>> itemListJson =
       globalController.items.map((item) => item.toJson()).toList();
